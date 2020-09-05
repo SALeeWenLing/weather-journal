@@ -1,5 +1,4 @@
 /* Global Variables */
-
 let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 let apiKey = '&units=metric&APPID=df36e04df26438b569e3497849b73d56';
 
@@ -41,20 +40,21 @@ const postData = async ( url = '', data = {})=>{
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
 
   try {
     const newData = await response.json();
+    console.log(newData);
     return newData;
   } catch(error) {
-    console.log("error", error);
+      console.log("error", error);
     // appropriately handle the error
   }
 }
 
 const updateUI = async () => {
-  const request = await fetch('/allData');
+  const request = await fetch('"http://localhost:8000/allData');
 
   try{
     const allData = await request.json();
@@ -62,6 +62,6 @@ const updateUI = async () => {
     document.getElementById('temp').innerHTML = allData[0].temp;
     document.getElementById('content').innerHTML = allData[0].content;
   } catch(error){
-    console.log("error", error);
+      console.log("error", error);
   }
 }
