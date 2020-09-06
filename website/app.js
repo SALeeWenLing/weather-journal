@@ -11,27 +11,26 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e){
   const newZip =  document.getElementById('zip').value;
   const feelings = document.getElementById('feelings').value;
-  getWeather(baseURL,newZip, apiKey)
-
-    .then(function(data) {
-      console.log(data);
-      postData('/addData', {date:newDate, temp:data.main.temp, content:feelings})
-      updateUI();
-    })
+  getWeather(baseURL, newZip, apiKey)
+  .then(function(data) {
+    postData('http://localhost:8000/addData', {date:d, temp:data.main.temp, content:feelings})
+    updateUI();
+  })
+  .then
+    updateUI();
 }
 
-const getWeather = async (baseURL, zip, apiKey)=>{
+const getWeather = async (baseURL, newZip, apiKey)=>{
 
-  const res = await fetch(baseURL+zip+apiKey)
+  const res = await fetch(baseURL+newZip+apiKey)
   try {
     const data = await res.json();
-    console.log(data)
     return data;
   } catch(error) {
     console.log("error", error);
     // appropriately handle the error
-  }
-}
+  };
+};
 
 const postData = async ( url = '', data = {})=>{
   const response = await fetch(url, {
@@ -45,16 +44,15 @@ const postData = async ( url = '', data = {})=>{
 
   try {
     const newData = await response.json();
-    console.log(newData);
     return newData;
   } catch(error) {
       console.log("error", error);
     // appropriately handle the error
-  }
-}
+  };
+};
 
-const updateUI = async () => {
-  const request = await fetch('"http://localhost:8000/allData');
+const updateUI = async ( url = '') => {
+  const request = await fetch('/allData');
 
   try{
     const allData = await request.json();
