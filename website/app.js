@@ -8,6 +8,7 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 document.getElementById('generate').addEventListener('click', performAction);
 
+// GET request to the Open Weather info API
 function performAction(e){
   const newZip =  document.getElementById('zip').value;
   const feelings = document.getElementById('feelings').value;
@@ -28,12 +29,11 @@ const getWeather = async (baseURL, newZip, apiKey)=>{
     return data;
   } catch(error) {
     console.log("error", error);
-    // appropriately handle the error
   };
 };
 
 const postData = async ( url = '', data = {})=>{
-  const response = await fetch(url, {
+  const res = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin',
     headers: {
@@ -43,19 +43,18 @@ const postData = async ( url = '', data = {})=>{
     });
 
   try {
-    const newData = await response.json();
+    const newData = await res.json();
     return newData;
   } catch(error) {
       console.log("error", error);
-    // appropriately handle the error
   };
 };
 
 const updateUI = async ( url = '') => {
-  const request = await fetch('/allData');
+  const req = await fetch('/allData');
 
   try{
-    const allData = await request.json();
+    const allData = await req.json();
     document.getElementById('date').innerHTML = allData[0].date;
     document.getElementById('temp').innerHTML = allData[0].temp;
     document.getElementById('content').innerHTML = allData[0].content;
