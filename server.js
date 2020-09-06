@@ -43,7 +43,7 @@ function addData (req, res){
   let newData = {
     date: req.body.date,
     temp: req.body.temp,
-    content: req.body.content,
+    userResponse: req.body.userResponse,
   }
   projectData.push(newData);
 };
