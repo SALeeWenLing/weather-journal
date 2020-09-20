@@ -51,6 +51,7 @@ const postData = async ( url = '', data = {})=>{
     // Convert to JSON
     const newData = await res.json();
     return newData;
+
   // catches the error
   } catch(error) {
       console.log("error", error);
@@ -69,6 +70,8 @@ const updateUI = async ( url = '') => {
     document.getElementById('date').innerHTML = allData[0].date;
     document.getElementById('temp').innerHTML = allData[0].temp;
     document.getElementById('content').innerHTML = allData[0].userResponse;
+    // log all new data in the console
+    console.log(allData)
   // catches the error
   } catch(error){
       console.log("error", error);

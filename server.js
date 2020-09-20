@@ -27,8 +27,7 @@ const port = 8000;
 const server = app.listen(port, listening);
 
 function listening() {
-  console.log('server running');
-  console.log(`running on local host: ${port}`);
+  console.log(`Server running on local host: ${port}`);
 };
 
 // GET route that sends all data from the server to the app. Returns the projectData object in your server code
@@ -40,7 +39,7 @@ app.get('/allData', function (req, res) {
 app.post('/addData', addData);
 
 function addData (req, res){
-  let newData = {
+  newData = {
     date: req.body.date,
     temp: req.body.temp,
     userResponse: req.body.userResponse,
