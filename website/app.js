@@ -16,7 +16,7 @@ function performAction(e){
   const feelings = document.getElementById('feelings').value;
   getWeatherData(baseURL, newZip, apiKey)
   .then(function(data) {
-    postData('http://localhost:8000/addData', {date:d, temp:data.main.temp, userResponse:feelings})
+    postData('http://localhost:8000/addData', {date:newDate, temp:data.main.temp, userResponse:feelings})
     updateUI();
   })
   .then
