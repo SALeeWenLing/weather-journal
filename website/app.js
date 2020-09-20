@@ -25,7 +25,7 @@ function performAction(e){
 
 // Async function that uses fetch() to make a GET request to the OpenWeatherMap API.
 const getWeatherData = async (baseURL, newZip, apiKey)=>{
-
+  // Await response from API
   const res = await fetch(baseURL+newZip+apiKey)
   try {
     const data = await res.json();
@@ -36,6 +36,7 @@ const getWeatherData = async (baseURL, newZip, apiKey)=>{
 };
 
 // Async function that uses fetch() to make a POST request to add the API data, as well as data entered by the user, to your app.
+// Attributes: 1) url to make post to, 2) JS object holding data to post
 const postData = async ( url = '', data = {})=>{
   const res = await fetch(url, {
     method: 'POST',
@@ -58,7 +59,7 @@ const postData = async ( url = '', data = {})=>{
 
 // Updates the UI dynamically
 const updateUI = async ( url = '') => {
-  // Retrieve data from app
+  // Awaits to retrieve data from app
   const req = await fetch('/allData');
 
   try{
