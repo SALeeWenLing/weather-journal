@@ -44,5 +44,5 @@ function addData (req, res){
     temp: req.body.temp,
     userResponse: req.body.userResponse,
   }
-  projectData.push(newData);
+  projectData.unshift(newData);
 };
